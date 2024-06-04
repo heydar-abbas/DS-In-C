@@ -1,13 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-#ifndef _INC_LINKEDLIST_QUEUE
-#define _INC_LINKEDLIST_QUEUE
-
-typedef struct queueentry
-{
-    int data;
-} QueueEntry;
+#ifndef LINKEDLIST_QUEUE_H
+#define LINKEDLIST_QUEUE_H
 
 typedef struct queuenode
 {

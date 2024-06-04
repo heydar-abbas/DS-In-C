@@ -1,21 +1,12 @@
-#include <stdio.h>
-
-#ifndef _INC_QUEUE
-#define _INC_QUEUE
-
-#define MAXQUEUE 5
-
-typedef struct queueentry
-{
-    int data;
-} QueueEntry;
+#ifndef QUEUE_H
+#define QUEUE_H
 
 typedef struct queue
 {
     int front;
     int rear;
     int size;
-    QueueEntry entry[MAXQUEUE];
+    QueueEntry entry[MAX_QUEUE];
 } Queue;
 
 void createQueue(Queue *);

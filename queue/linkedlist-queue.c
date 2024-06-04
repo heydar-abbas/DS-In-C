@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "../Global.h"
 #include "LinkedlistQueue.h"
 
 void main(void)

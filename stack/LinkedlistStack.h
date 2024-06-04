@@ -1,14 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
 /******** Non Linear Structuer ********/
 
-#ifndef _INC_LINKEDLIST_STACK
-#define _INC_LINKEDLIST_STACK
-
-typedef struct entry
-{
-    int data;
-} StackEntry;
+#ifndef LINKEDLIST_STACK_H
+#define LINKEDLIST_STACK_H
 
 typedef struct stacknode
 {

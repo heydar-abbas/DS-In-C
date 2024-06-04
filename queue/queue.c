@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include "../Global.h"
 #include "Queue.h"
 
 void main(void)
@@ -65,8 +67,8 @@ int append(QueueEntry e, Queue *ptr_q)
 {
     if (queueFull(ptr_q))
         return 0;
-    // (ptr_q->rear == MAXQUEUE - 1) ? ptr_q->rear = 0 : ptr_q->rear++;
-    ptr_q->rear = (ptr_q->rear + 1) % MAXQUEUE;
+    // (ptr_q->rear == MAX_QUEUE - 1) ? ptr_q->rear = 0 : ptr_q->rear++;
+    ptr_q->rear = (ptr_q->rear + 1) % MAX_QUEUE;
     ptr_q->entry[ptr_q->rear] = e;
     ptr_q->size++;
     return 1;
@@ -77,13 +79,13 @@ void serve(QueueEntry *ptr_e, Queue *ptr_q)
     if (queueEmpty(ptr_q))
         return;
     *ptr_e = ptr_q->entry[ptr_q->front];
-    ptr_q->front = (ptr_q->front + 1) % MAXQUEUE;
+    ptr_q->front = (ptr_q->front + 1) % MAX_QUEUE;
     ptr_q->size--;
 }
 
 int queueFull(Queue *ptr_q)
 {
-    return (ptr_q->size == MAXQUEUE);
+    return (ptr_q->size == MAX_QUEUE);
 }
 
 int queueEmpty(Queue *ptr_q)
@@ -109,7 +111,7 @@ void traverseQueue(Queue *ptr_q, void (*ptr_f)(QueueEntry))
     for (pos = ptr_q->front, s = 0; s < ptr_q->size; s++)
     {
         (*ptr_f)(ptr_q->entry[pos]);
-        pos = (pos + 1) % MAXQUEUE;
+        pos = (pos + 1) % MAX_QUEUE;
     }
     printf("\n");
 }

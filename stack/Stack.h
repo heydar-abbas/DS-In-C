@@ -1,15 +1,7 @@
-#include <stdio.h>
 /******** Linear Structuer ********/
 
-#ifndef _INC_ARRAY_STACK
-#define _INC_ARRAY_STACK
-
-#define MAX_STACK 5
-
-typedef struct entry
-{
-    int data;
-} StackEntry;
+#ifndef STACK_H
+#define STACK_H
 
 typedef struct stack
 {

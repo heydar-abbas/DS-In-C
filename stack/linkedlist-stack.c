@@ -1,4 +1,7 @@
-#include "linkedlist_stack.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "../Global.h"
+#include "LinkedlistStack.h"
 
 void main(void)
 {
