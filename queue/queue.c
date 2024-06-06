@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "../Global.h"
 #include "Queue.h"
 
 void main(void)

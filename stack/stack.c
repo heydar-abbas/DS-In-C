@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "../Global.h"
 #include "Stack.h"
 
 void main(void)

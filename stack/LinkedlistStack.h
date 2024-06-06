@@ -1,3 +1,5 @@
+#include "../Global.h"
+
 /******** Non Linear Structuer ********/
 
 #ifndef LINKEDLIST_STACK_H

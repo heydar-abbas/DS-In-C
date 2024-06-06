@@ -1,3 +1,5 @@
+#include "../Global.h"
+
 /******** Linear Structuer ********/
 
 #ifndef STACK_H

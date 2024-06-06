@@ -1,3 +1,5 @@
+#include "../Global.h"
+
 #ifndef LINKEDLIST_QUEUE_H
 #define LINKEDLIST_QUEUE_H
 
