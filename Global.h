@@ -12,4 +12,7 @@ typedef ElementType StackEntry;
 typedef ElementType QueueEntry;
 #define MAX_QUEUE 5
 
+typedef ElementType ListEntry;
+#define MAX_LIST 5
+
 #endif
