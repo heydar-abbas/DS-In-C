@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "LinkedList.h"
 
-void main(void)
+int main()
 {
     List list;
     ListEntry le;
@@ -14,7 +14,10 @@ void main(void)
     {
         int pos = 0;
         le.data = i;
-        insertList(pos++, le, &list);
+        if (!listFull(&list))
+            insertList(pos++, le, &list);
+        else
+            printf("The List is full!\n\n");
     }
     /*****************  Traverse all List  *****************/
     printf("Size of List: [ %d ]\n", listSize(&list));
@@ -48,12 +51,16 @@ void main(void)
     printf("Size of List: [ %d ]\n", listSize(&list));
     if (!traverseList(&list, &display))
         printf("List is empty!");
+
+    return 0;
 }
 
 void createList(List *pl)
 {
     pl->head = NULL;
     pl->size = 0;
+    pl->current = NULL;  // new
+    pl->current_pos = 0; // new
 }
 
 int destroyList(List *pl)
@@ -88,8 +95,9 @@ int listSize(List *pl)
 
 int insertList(int pos, ListEntry le, List *pl)
 {
-    ListNode *p, *q;
-    int i;
+    // ListNode *p, *q;
+    // int i;
+    ListNode *p;
     if (p = (ListNode *)malloc(sizeof(ListNode)))
     {
         p->entry = le;
@@ -98,13 +106,25 @@ int insertList(int pos, ListEntry le, List *pl)
         {
             p->next = pl->head;
             pl->head = p;
+            pl->current_pos = 0;    // new
+            pl->current = pl->head; //  new
         }
         else
         {
-            for (q = pl->head, i = 0; i < pos - 1; i++)
-                q = q->next;
-            p->next = q->next;
-            q->next = p;
+            /** 'pl->current' is used in place in 'q' previously **/
+            if (pos <= pl->current_pos) //  new
+            {
+                pl->current_pos = 0;    // as 'i = 0'
+                pl->current = pl->head; //  as 'q = pl->head'
+            }
+            // for (q = pl->head, i = 0; i < pos - 1; i++)
+            //     q = q->next;
+            for (; pl->current_pos != pos - 1; pl->current_pos++)
+                pl->current = pl->current->next;
+            // p->next = q->next;
+            p->next = pl->current->next;
+            // q->next = p;
+            pl->current->next = p;
         }
         pl->size++;
         return 1;
@@ -114,23 +134,39 @@ int insertList(int pos, ListEntry le, List *pl)
 
 void deleteList(int pos, ListEntry *ple, List *pl)
 {
-    ListNode *q, *tmp;
-    int i;
+    // ListNode *q, *tmp;
+    // int i;
+    ListNode *tmp;
     if (pos == 0)
     {
         *ple = pl->head->entry;
-        tmp = pl->head->next;
+        // tmp = pl->head->next;
+        pl->current = pl->head->next; // new
         free(pl->head);
-        pl->head = tmp;
+        // pl->head = tmp;
+        pl->head = pl->current; //  new
+        pl->current_pos = 0;    // new
     }
     else
     {
-        for (q = pl->head, i = 0; i < pos - 1; i++)
-            q = q->next;
-        *ple = q->next->entry;
-        tmp = q->next->next;
-        free(q->next);
-        q->next = tmp;
+        /** 'pl->current' is used in place in 'q' previously **/
+        if (pos <= pl->current_pos) //  new
+        {
+            pl->current_pos = 0;    // as 'i = 0'
+            pl->current = pl->head; //  as 'q = pl->head'
+        }
+        // for (q = pl->head, i = 0; i < pos - 1; i++)
+        //     q = q->next;
+        for (; pl->current_pos != pos - 1; pl->current_pos++)
+            pl->current = pl->current->next;
+        // *ple = q->next->entry;
+        *ple = pl->current->next->entry;
+        // tmp = q->next->next;
+        tmp = pl->current->next->next;
+        // free(q->next);
+        free(pl->current->next);
+        // q->next = tmp;
+        pl->current->next = tmp;
     }
     pl->size--;
 }

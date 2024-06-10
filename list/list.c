@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "List.h"
 
-void main(void)
+int main()
 {
     List list;
     ListEntry le;
@@ -13,35 +13,26 @@ void main(void)
     {
         int pos = 0;
         le.data = i;
-        if (!insertList(pos++, le, &list))
-            printf("\n List is Full!! \n\n");
+        if (!listFull(&list))
+            insertList(pos++, le, &list);
+        else
+            printf("The List is full!\n\n");
     }
-    /*
-    User level check "post condition"
-    if (!listFull(&list))
-        insertList(pos++, le, &list);
-    else
-        printf("The List is full!");
-    */
     /*****************  Traverse all List  *****************/
     printf("Size of List: [ %d ]\n", listSize(&list));
     if (!traverseList(&list, &display))
         printf("List is empty!");
 
     /*****************  Delete from List  *****************/
-    deleteList(3, &le, &list);
+    if (!listEmpty(&list))
+        deleteList(3, &le, &list);
+    else
+        printf("The List is empty!");
     printf("\n\nAfter delete from position 3:\n");
     printf("Size of List: [ %d ]\n", listSize(&list));
     printf("Delete value: [ %d ]\n", le);
     if (!traverseList(&list, &display))
         printf("List is empty!");
-    /*
-    User level check "post condition"
-    if (!listEmpty(&list))
-        deleteList(3, &le, &list);
-    else
-        printf("The List is empty!");
-    */
     /*****************  Replace  *****************/
     le.data = 100;
     replaceList(2, le, &list);
@@ -49,17 +40,18 @@ void main(void)
     printf("Size of List: [ %d ]\n", listSize(&list));
     if (!traverseList(&list, &display))
         printf("List is empty!");
-
     /*****************  Retrieve from List  *****************/
     retrieveList(2, &le, &list);
     printf("\n\nRetrieve Value is [ %d ]\n", le.data);
 
     /*****************  Clear List  *****************/
-    createList(&list);
     printf("\nClear List:\n");
+    createList(&list);
     printf("Size of List: [ %d ]\n", listSize(&list));
     if (!traverseList(&list, &display))
         printf("List is empty!");
+
+    return 0;
 }
 
 void createList(List *pl)
@@ -88,15 +80,12 @@ int listSize(List *pl)
     return pl->size;
 }
 
-int insertList(int pos, ListEntry le, List *pl)
+void insertList(int pos, ListEntry le, List *pl)
 {
-    if (listFull(pl))
-        return 0;
     for (int i = pl->size - 1; i >= pos; i--)
         pl->entry[i + 1] = pl->entry[i];
     pl->entry[pos] = le;
     pl->size++;
-    return 1;
 }
 
 void deleteList(int pos, ListEntry *ple, List *pl)
@@ -107,12 +96,9 @@ void deleteList(int pos, ListEntry *ple, List *pl)
     pl->size--;
 }
 
-int retrieveList(int pos, ListEntry *ple, List *pl)
+void retrieveList(int pos, ListEntry *ple, List *pl)
 {
-    if (listEmpty(pl))
-        return 0;
     *ple = pl->entry[pos];
-    return 1;
 }
 
 void replaceList(int pos, ListEntry le, List *pl)

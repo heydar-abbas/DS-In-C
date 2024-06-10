@@ -8,8 +8,8 @@ typedef struct listNode
 
 typedef struct list
 {
-    ListNode *head;
-    int size;
+    ListNode *head, *current;
+    int size, current_pos;
 } List;
 
 void createList(List *);
