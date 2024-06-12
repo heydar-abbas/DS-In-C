@@ -9,7 +9,6 @@ typedef struct queuenode
     struct queuenode *next;
 } QueueNode;
 
-
 typedef struct queue
 {
     QueueNode *front;
@@ -19,10 +18,11 @@ typedef struct queue
 
 void createQueue(Queue *);
 int append(QueueEntry, Queue *);   // enQueue
-void serve(QueueEntry *, Queue *);  // deQueue
+int serve(QueueEntry *, Queue *);  // deQueue
 int queueFull(Queue *);
 int queueEmpty(Queue *);
 int queueSize(Queue *);
+int front(QueueEntry *, Queue *);
 void clearQueue(Queue *);
 void traverseQueue(Queue *, void (*ptr_f)(QueueEntry));
 void display(QueueEntry);

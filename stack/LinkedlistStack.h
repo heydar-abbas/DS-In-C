@@ -21,11 +21,11 @@ void createStack(Stack *);
 int push(StackEntry, Stack *);
 int pop(StackEntry *, Stack *);
 int top(StackEntry *, Stack *);
-void clear(Stack *);
-void display(StackEntry);
-int traverseStack(Stack *, void (*ptr_f)(StackEntry));
+int clear(Stack *);
 int stackFull(Stack *);
 int stackEmpty(Stack *);
 int stackSize(Stack *);
+void display(StackEntry);
+int traverseStack(Stack *, void (*ptr_f)(StackEntry));
 
 #endif

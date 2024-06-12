@@ -2,8 +2,8 @@
 
 /******** Linear Structuer ********/
 
-#ifndef STACK_H
-#define STACK_H
+#ifndef ARRAY_STACK_H
+#define ARRAY_STACK_H
 
 typedef struct stack
 {
@@ -15,11 +15,11 @@ void createStack(Stack *);
 int push(StackEntry, Stack *);
 int pop(StackEntry *, Stack *);
 int top(StackEntry *, Stack *);
-void clear(Stack *);
-void display(StackEntry);
-int traverseStack(Stack *, void (*ptr_f)(StackEntry));
+int clear(Stack *);
 int stackFull(Stack *);
 int stackEmpty(Stack *);
 int stackSize(Stack *);
+void display(StackEntry);
+int traverseStack(Stack *, void (*ptr_f)(StackEntry));
 
 #endif
