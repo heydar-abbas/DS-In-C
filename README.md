@@ -1,4 +1,3 @@
-# DS Using C Programming Language
-Data Structure Using C Programming Language
-## Source:
+# Data Structures in C
+**Source:**
 https://www.arabsera.org
